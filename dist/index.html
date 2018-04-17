@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Conjugation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<p>
+Stem (include slashes): <input type="text" id="stem">
+Verb type: <select id="verbType">
+  <option value="ar">ar</option>
+  <option value="er">er</option>
+  <option value="ir">ir</option>
+</select>
+Ending consonant: <select id="endCons">
+  <option value="Normal">Normal</option>
+  <option value="HardG">Hard G</option>
+  <option value="SoftG">Soft G</option>
+</select>
+Pattern #: <input tpe="text" size="4" id="pattern">
+</p>
+<p>
+<select id="tense">
+  <option id="Present">Present</option>
+  <option id="Imperfect">Imperfect</option>
+  <option id="Preterite">Preterite</option>
+  <option id="Future">Future</option>
+  <option id="Conditional">Conditional</option>
+</select>
+<select id="person">
+  <option id="1">First person</option>
+  <option id="2">Second person</option>
+  <option id="3">Third person</option>
+</select>
+<select id="number">
+  <option id="Singular">Singular</option>
+  <option id="Plural">Plural</option>
+</select>
+</p><p>
+<input type="button" id="conjugate" value="Conjugate">
+</p>
+<p>Result: <span id="result"></span></p>
+
+<script type="text/javascript" src="/Conjugate.bs.324e084b.js"></script>
+</body>
+</html>

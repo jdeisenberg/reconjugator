@@ -1,0 +1,13 @@
+body {
+  margin: 1em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.spanbox {
+  display: inline-block;
+  padding: 0.25em;
+  border: 1px solid gray;
+  margin-right: 1em;
+}
+
+
