@@ -7,83 +7,12 @@ var Caml_format = require("bs-platform/lib/js/caml_format.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
-function optFloat(str) {
-  if (str) {
-    var exit = 0;
-    var fNum;
-    try {
-      fNum = Caml_format.caml_float_of_string(str[0]);
-      exit = 1;
-    }
-    catch (raw_exn){
-      var exn = Js_exn.internalToOCamlException(raw_exn);
-      if (exn[0] === Caml_builtin_exceptions.failure) {
-        if (exn[1] === "float_of_string") {
-          return /* None */0;
-        } else {
-          throw exn;
-        }
-      } else {
-        throw exn;
-      }
-    }
-    if (exit === 1) {
-      return /* Some */[fNum];
-    }
-    
+function map(f, param) {
+  if (param) {
+    return /* Some */[Curry._1(f, param[0])];
   } else {
     return /* None */0;
   }
-}
-
-function optInt(str) {
-  if (str) {
-    var exit = 0;
-    var anInt;
-    try {
-      anInt = Caml_format.caml_int_of_string(str[0]);
-      exit = 1;
-    }
-    catch (raw_exn){
-      var exn = Js_exn.internalToOCamlException(raw_exn);
-      if (exn[0] === Caml_builtin_exceptions.failure) {
-        if (exn[1] === "int_of_string") {
-          return /* None */0;
-        } else {
-          throw exn;
-        }
-      } else {
-        throw exn;
-      }
-    }
-    if (exit === 1) {
-      return /* Some */[anInt];
-    }
-    
-  } else {
-    return /* None */0;
-  }
-}
-
-function getStringValue(el) {
-  if (el) {
-    return /* Some */[el[0].value];
-  } else {
-    return /* None */0;
-  }
-}
-
-function setText(text, el) {
-  if (el) {
-    el[0].textContent = text;
-    return /* () */0;
-  } else {
-    return /* () */0;
-  }
-}
-
-function getNumValue(id) {
-  return optFloat(getStringValue(Js_primitive.null_undefined_to_opt(document.getElementById(id))));
 }
 
 function andThen(f, item) {
@@ -94,10 +23,74 @@ function andThen(f, item) {
   }
 }
 
+function optFloat(str) {
+  var exit = 0;
+  var fNum;
+  try {
+    fNum = Caml_format.caml_float_of_string(str);
+    exit = 1;
+  }
+  catch (raw_exn){
+    var exn = Js_exn.internalToOCamlException(raw_exn);
+    if (exn[0] === Caml_builtin_exceptions.failure) {
+      if (exn[1] === "float_of_string") {
+        return /* None */0;
+      } else {
+        throw exn;
+      }
+    } else {
+      throw exn;
+    }
+  }
+  if (exit === 1) {
+    return /* Some */[fNum];
+  }
+  
+}
+
+function optInt(str) {
+  var exit = 0;
+  var anInt;
+  try {
+    anInt = Caml_format.caml_int_of_string(str);
+    exit = 1;
+  }
+  catch (raw_exn){
+    var exn = Js_exn.internalToOCamlException(raw_exn);
+    if (exn[0] === Caml_builtin_exceptions.failure) {
+      if (exn[1] === "int_of_string") {
+        return /* None */0;
+      } else {
+        throw exn;
+      }
+    } else {
+      throw exn;
+    }
+  }
+  if (exit === 1) {
+    return /* Some */[anInt];
+  }
+  
+}
+
+function getStringValue(el) {
+  return /* Some */[el.value];
+}
+
+function setText(text, el) {
+  el.textContent = text;
+  return /* () */0;
+}
+
+function getFloatValue(id) {
+  return andThen(optFloat, andThen(getStringValue, Js_primitive.null_undefined_to_opt(document.getElementById(id))));
+}
+
+exports.map = map;
+exports.andThen = andThen;
 exports.optFloat = optFloat;
 exports.optInt = optInt;
 exports.getStringValue = getStringValue;
 exports.setText = setText;
-exports.getNumValue = getNumValue;
-exports.andThen = andThen;
+exports.getFloatValue = getFloatValue;
 /* No side effect */

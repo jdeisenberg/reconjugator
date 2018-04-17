@@ -30,10 +30,10 @@ let conjugate = (v: Verb.verb, tense: Verb.tense, person: int, number: Verb.numb
 let formRead = (_evt: Dom.mouseEvent) : unit => {
   let resultElement = Document.getElementById("result", document);
   Js.log2("result element", resultElement);
-  let result = WebUtils.getStringValue(Document.getElementById("tense", document));
+  let result = Document.getElementById("tense", document) |> WebUtils.andThen(WebUtils.getStringValue);
   Js.log2("String value from tense is:", result);
   switch (result) {
-    | Some(result) => WebUtils.setText(result, resultElement)
+    | Some(result) => WebUtils.andThen(WebUtils.setText(result),resultElement)
     | None => WebUtils.setText("", resultElement)
   };
   ();

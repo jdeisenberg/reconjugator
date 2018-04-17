@@ -1,45 +1,10 @@
 open Webapi.Dom;
 
-let optFloat = (str : option(string)) : option(float) =>
-  switch (str) {
-    | Some(s) =>
-      switch (float_of_string(s)) {
-        | fNum => Some(fNum)
-        | exception (Failure("float_of_string")) => None
-      };
-    | None => None
-  };
+let map = (f) =>
+  fun
+  | Some(v) => Some(f(v))
+  | None => None;
 
-let optInt = (str : option(string)) : option(int) =>
-  switch (str) {
-    | Some(s) =>
-      switch (int_of_string(s)) {
-        | anInt => Some(anInt)
-        | exception (Failure("int_of_string")) => None
-      };
-    | None => None
-  };
-
-let getStringValue  = (el: option(Dom.element)) : option(string) => {
-  switch (el) {
-    | Some(inputElement) => Some(HtmlElement.value(Element.unsafeAsHtmlElement(inputElement)))
-    | None => None
-  };
-};
-
-let setText = (text: string, el: option(Dom.element)) : unit => {
-  switch (el) {
-    | Some (element) => Element.setTextContent(element, text)
-    | None => ()
-  };
-};
-
-let getNumValue = (id : string) : option(float) => {
-  Document.getElementById(id, document)
-  |> getStringValue
-  |> optFloat
-};
-  
 let andThen = (f: 'a => option('b)) =>
   fun (item) => {
     switch (item) {
@@ -47,3 +12,32 @@ let andThen = (f: 'a => option('b)) =>
   | None => None
     }
 };
+
+let optFloat = (str : string) : option(float) => {
+  switch (float_of_string(str)) {
+    | fNum => Some(fNum)
+    | exception (Failure("float_of_string")) => None
+  }
+};
+
+let optInt = (str : string) : option(int) => {
+  switch (int_of_string(str)) {
+    | anInt => Some(anInt)
+    | exception (Failure("int_of_string")) => None
+  }
+};
+
+let getStringValue  = (el: Dom.element) : option(string) => {
+  Some(HtmlElement.value(Element.unsafeAsHtmlElement(el)))
+};
+
+let setText = (text: string, el: Dom.element) : unit => {
+  Element.setTextContent(el, text)
+};
+
+let getFloatValue = (id : string) : option(float) => {
+  Document.getElementById(id, document)
+  |> andThen(getStringValue)
+  |> andThen(optFloat)
+};
+  
