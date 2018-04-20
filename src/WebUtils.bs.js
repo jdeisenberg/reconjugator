@@ -3,6 +3,8 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var Js_exn = require("bs-platform/lib/js/js_exn.js");
+var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
+var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_format = require("bs-platform/lib/js/caml_format.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
@@ -73,24 +75,112 @@ function optInt(str) {
   
 }
 
-function getStringValue(el) {
+function getStringVal(el) {
   return /* Some */[el.value];
 }
 
-function setText(text, el) {
-  el.textContent = text;
-  return /* () */0;
+function setText(text, el, $$default) {
+  if (text) {
+    if (el) {
+      el[0].textContent = text[0];
+      return /* () */0;
+    } else {
+      return /* () */0;
+    }
+  } else if (el) {
+    el[0].textContent = $$default;
+    return /* () */0;
+  } else {
+    return /* () */0;
+  }
 }
 
 function getFloatValue(id) {
-  return andThen(optFloat, andThen(getStringValue, Js_primitive.null_undefined_to_opt(document.getElementById(id))));
+  return andThen(optFloat, andThen(getStringVal, Js_primitive.null_undefined_to_opt(document.getElementById(id))));
+}
+
+function getIntValue(id) {
+  return andThen(optInt, andThen(getStringVal, Js_primitive.null_undefined_to_opt(document.getElementById(id))));
+}
+
+function getStringValue(id) {
+  return andThen(getStringVal, Js_primitive.null_undefined_to_opt(document.getElementById(id)));
+}
+
+function clearChildren(el) {
+  while(true) {
+    var match = el.lastChild;
+    if (match == null) {
+      return /* () */0;
+    } else {
+      el.removeChild(match);
+      continue ;
+    }
+  };
+}
+
+function clearChildrenById(id) {
+  var match = document.getElementById(id);
+  if (match == null) {
+    return /* () */0;
+  } else {
+    return clearChildren(match);
+  }
+}
+
+function keepWithIndex(arr, predicate) {
+  var _acc = /* array */[];
+  var _index = 0;
+  while(true) {
+    var index = _index;
+    var acc = _acc;
+    if (index < arr.length) {
+      if (Curry._2(predicate, index, Caml_array.caml_array_get(arr, index))) {
+        _index = index + 1 | 0;
+        _acc = Belt_Array.concat(acc, /* array */[Caml_array.caml_array_get(arr, index)]);
+        continue ;
+      } else {
+        _index = index + 1 | 0;
+        continue ;
+      }
+    } else {
+      return acc;
+    }
+  };
+}
+
+function keepMapWithIndex(arr, mapFcn) {
+  var _acc = /* array */[];
+  var _index = 0;
+  while(true) {
+    var index = _index;
+    var acc = _acc;
+    if (index < arr.length) {
+      var match = Curry._2(mapFcn, index, Caml_array.caml_array_get(arr, index));
+      _index = index + 1 | 0;
+      if (match) {
+        _acc = Belt_Array.concat(acc, /* array */[match[0]]);
+        continue ;
+      } else {
+        continue ;
+      }
+    } else {
+      return acc;
+    }
+  };
 }
 
 exports.map = map;
 exports.andThen = andThen;
 exports.optFloat = optFloat;
 exports.optInt = optInt;
-exports.getStringValue = getStringValue;
+exports.getStringVal = getStringVal;
 exports.setText = setText;
 exports.getFloatValue = getFloatValue;
+exports.getIntValue = getIntValue;
+exports.getStringValue = getStringValue;
+exports.clearChildren = clearChildren;
+exports.clearChildrenById = clearChildrenById;
+exports.keepWithIndex = keepWithIndex;
+exports.keepMapWithIndex = keepMapWithIndex;
 /* No side effect */

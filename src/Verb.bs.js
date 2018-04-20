@@ -64,10 +64,28 @@ function verbTypeOfString(s) {
   }
 }
 
+function tenseOfString(s) {
+  switch (s) {
+    case "Conditional" : 
+        return /* Some */[/* Conditional */4];
+    case "Future" : 
+        return /* Some */[/* Future */3];
+    case "Imperfect" : 
+        return /* Some */[/* Imperfect */1];
+    case "Present" : 
+        return /* Some */[/* Present */0];
+    case "Preterite" : 
+        return /* Some */[/* Preterite */2];
+    default:
+      return /* None */0;
+  }
+}
+
 exports.VerbTypeComparator = VerbTypeComparator;
 exports.ConjComparator = ConjComparator;
 exports.joinArray = joinArray;
 exports.stringOfPattern = stringOfPattern;
 exports.conjugationOfString = conjugationOfString;
 exports.verbTypeOfString = verbTypeOfString;
+exports.tenseOfString = tenseOfString;
 /* VerbTypeComparator Not a pure module */

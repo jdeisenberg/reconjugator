@@ -48,3 +48,5 @@ let joinArray: (string, array(string)) => string;
 let stringOfPattern : (pattern) => string;
 let conjugationOfString : string => option(conjugation);
 let verbTypeOfString : string => option(verbType);
+let tenseOfString : string => option(tense);
+

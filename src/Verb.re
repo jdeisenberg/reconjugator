@@ -99,11 +99,23 @@ let conjugationOfString = (s: string) : option(conjugation) => {
   }
 };
 
+
 let verbTypeOfString = (s:string) : option(verbType) => {
   switch(s) {
     | "Regular" => Some(Regular)
     | "Irregular" => Some(Irregular)
     | "StemChanging" => Some(StemChanging)
+    | _ => None
+  }
+};
+
+let tenseOfString = (s: string) : option(tense) => {
+  switch(s) {
+    | "Present" => Some(Present)
+    | "Imperfect" => Some(Imperfect)
+    | "Preterite" => Some(Preterite)
+    | "Future" => Some(Future)
+    | "Conditional" => Some(Conditional);
     | _ => None
   }
 };

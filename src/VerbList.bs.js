@@ -110,7 +110,7 @@ var verbList = /* array */[
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 1)
   ],
   /* record */[
-    /* spanish */"entender",
+    /* spanish */"ent/e/nder",
     /* english */"to understand",
     /* conj : ER */1,
     /* type_ : StemChanging */1,
@@ -126,7 +126,7 @@ var verbList = /* array */[
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 2)
   ],
   /* record */[
-    /* spanish */"dormir",
+    /* spanish */"d/o/rmir",
     /* english */"to sleep",
     /* conj : IR */2,
     /* type_ : StemChanging */1,
@@ -148,6 +148,46 @@ var verbList = /* array */[
     /* type_ : Regular */0,
     /* reflexive */false,
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 2)
+  ],
+  /* record */[
+    /* spanish */"estar",
+    /* english */"to be",
+    /* conj : AR */0,
+    /* type_ : Irregular */2,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 33)
+  ],
+  /* record */[
+    /* spanish */"/s/er",
+    /* english */"to be",
+    /* conj : ER */1,
+    /* type_ : Irregular */2,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 53)
+  ],
+  /* record */[
+    /* spanish */"ir",
+    /* english */"to go",
+    /* conj : IR */2,
+    /* type_ : Irregular */2,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 36)
+  ],
+  /* record */[
+    /* spanish */"t/en/er",
+    /* english */"to have",
+    /* conj : ER */1,
+    /* type_ : Irregular */2,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 56)
+  ],
+  /* record */[
+    /* spanish */"p/o/der",
+    /* english */"to be able (to)",
+    /* conj : ER */1,
+    /* type_ : Irregular */2,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 45)
   ]
 ];
 

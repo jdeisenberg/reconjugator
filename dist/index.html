@@ -3,46 +3,70 @@
 <html>
 <head>
   <title>Conjugation</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 
 <body>
 <p>
-Stem (include slashes): <input type="text" id="stem">
-Verb type: <select id="verbType">
-  <option value="ar">ar</option>
-  <option value="er">er</option>
-  <option value="ir">ir</option>
-</select>
-Ending consonant: <select id="endCons">
-  <option value="Normal">Normal</option>
-  <option value="HardG">Hard G</option>
-  <option value="SoftG">Soft G</option>
-</select>
-Pattern #: <input tpe="text" size="4" id="pattern">
+Select verb categories you wish to use:
 </p>
-<p>
-<select id="tense">
+
+<div class="spanbox">
+<input type="checkbox" name="conj" value="AR" onchange="Conjugate.changeConj()"/> -ar &nbsp;
+<input type="checkbox" name="conj" value="ER"/> -er &nbsp;
+<input type="checkbox" name="conj" value="IR"/> -ir &nbsp;
+</div>
+
+<div class="spanbox">
+<input type="radio" name="verbType" value="Regular"
+  checked="checked"/> Regular &nbsp;
+<input type="radio" name="verbType" value="StemChanging"/> Stem-changing &nbsp;
+<input type="radio" name="verbType" value="Irregular"/> Irregular &nbsp;
+</div>
+
+<div class="spanbox">
+<input type="checkbox" id="reflexive" name="reflexive" value="Reflexive"/> Reflexive
+</div>
+</p>
+
+<p> 
+  <select id="verbList"></select>
+
+Tense: <select id="tense">
   <option id="Present">Present</option>
   <option id="Imperfect">Imperfect</option>
   <option id="Preterite">Preterite</option>
   <option id="Future">Future</option>
   <option id="Conditional">Conditional</option>
 </select>
-<select id="person">
-  <option id="1">First person</option>
-  <option id="2">Second person</option>
-  <option id="3">Third person</option>
-</select>
-<select id="number">
-  <option id="Singular">Singular</option>
-  <option id="Plural">Plural</option>
-</select>
-</p><p>
-<input type="button" id="conjugate" value="Conjugate">
 </p>
-<p>Result: <span id="result"></span></p>
 
-<script type="text/javascript" src="/Conjugate.bs.324e084b.js"></script>
+<p>
+<input type="button" id="conjugate" value="Conjugate"/>
+</p>
+
+<div id="result">
+<h1 id="verbTitle"></h1>
+<table class="verbTable">
+<tr>
+  <th colspan="2" class="vBorder">Singular</th>
+  <th colspan="2">Plural</th>
+</tr>
+<tr>
+  <td>yo</td><td id="v0" class="vBorder">&nbsp;</td>
+  <td class="vSpace">nosotros</td><td id="v3"></td>
+</tr>
+<tr>
+  <td>tú</td><td id="v1" class="vBorder">&nbsp;</td>
+  <td class="vSpace">vosotros</td><td id="v4"></td>
+</tr>
+<tr>
+  <td>él<br />ella<br />usted</td><td id="v2" class="vBorder">&nbsp;</td>
+  <td class="vSpace">ellos<br />ellas<br />ustedes</td><td id="v5"></td>
+</tr>
+</table>
+</div>
+
+<script type="text/javascript" src="Conjugate.bs.js"></script>
 </body>
-</html>
