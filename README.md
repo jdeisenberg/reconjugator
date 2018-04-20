@@ -10,3 +10,5 @@ for example, https://langintro.com/kintro/grammar/preauto.htm). So, once again,
 I am exhuming it for Spanish. Every time I rewrite it, I promise myself this
 will be the last time. And, of course, it never is.
 
+See it in action at https://langintro.com/spanish/conjugator
+
