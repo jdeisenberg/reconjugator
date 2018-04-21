@@ -14,14 +14,6 @@ var verbList = /* array */[
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 0)
   ],
   /* record */[
-    /* spanish */"gustar",
-    /* english */"to like",
-    /* conj : AR */0,
-    /* type_ : Regular */0,
-    /* reflexive */true,
-    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 0)
-  ],
-  /* record */[
     /* spanish */"estudiar",
     /* english */"to study",
     /* conj : AR */0,
@@ -86,6 +78,22 @@ var verbList = /* array */[
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 0)
   ],
   /* record */[
+    /* spanish */"lavar",
+    /* english */"to wash",
+    /* conj : AR */0,
+    /* type_ : Regular */0,
+    /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 0)
+  ],
+  /* record */[
+    /* spanish */"lavar",
+    /* english */"to wash one’s self",
+    /* conj : AR */0,
+    /* type_ : Regular */0,
+    /* reflexive */true,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 0)
+  ],
+  /* record */[
     /* spanish */"leer",
     /* english */"to read",
     /* conj : ER */1,
@@ -131,6 +139,14 @@ var verbList = /* array */[
     /* conj : IR */2,
     /* type_ : StemChanging */1,
     /* reflexive */false,
+    /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 29)
+  ],
+  /* record */[
+    /* spanish */"d/o/rmir",
+    /* english */"to go to sleep / fall asleep",
+    /* conj : IR */2,
+    /* type_ : StemChanging */1,
+    /* reflexive */true,
     /* pattern */Caml_array.caml_array_get(Patterns$Spanishverb.templates, 29)
   ],
   /* record */[
@@ -183,7 +199,7 @@ var verbList = /* array */[
   ],
   /* record */[
     /* spanish */"p/o/der",
-    /* english */"to be able (to)",
+    /* english */"to be able [to]",
     /* conj : ER */1,
     /* type_ : Irregular */2,
     /* reflexive */false,
