@@ -74,7 +74,7 @@ let infinitive = (v: Verb.verb) : string => {
 };
 
 let filterVerbs = (_evt: Dom.event) : unit => {
-  let htmlDoc = DocumentRe.asHtmlDocument(document);
+  let htmlDoc = Document.asHtmlDocument(document);
   switch (htmlDoc) {
     | Some(htmlDoc) => {
         let conjSet = requestedConjugations(htmlDoc);
@@ -158,7 +158,7 @@ let setArrayChange = (arr: array(Dom.node), fcn: ((Dom.event) => unit)) : unit =
   })
 };
 
-let htmlDoc = DocumentRe.asHtmlDocument(document);
+let htmlDoc = Document.asHtmlDocument(document);
 switch (htmlDoc) {
   | Some(htmlDoc) => {
       setArrayChange(NodeList.toArray(HtmlDocument.getElementsByName("conj", htmlDoc)), filterVerbs);

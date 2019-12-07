@@ -1,10 +1,13 @@
 open Webapi.Dom;
 
+/* Convenience function for handling option() values */
 let map = (f) =>
   fun
   | Some(v) => Some(f(v))
   | None => None;
 
+
+/* Convenience function for passing along option() values */
 let andThen = (f: 'a => option('b)) =>
   fun (item) => {
     switch (item) {

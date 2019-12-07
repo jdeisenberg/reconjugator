@@ -12,9 +12,13 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "bs-platform": "^2.1.0"
+    "bs-platform": "^7.0",
+    "bsb-js": "^1.1.7",
+    "cssnano": "^4.1.10",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "bs-webapi": "^0.9.0"
+    "bs-webapi": "^0.15.6",
+    "webpack": "^4.41.2"
   }
 }
